@@ -171,6 +171,12 @@ module.exports = function(grunt) {
               }
             },
             all: ['spec/']
+        },
+        properties_to_json: {
+            main: {
+                src: ['public/i18n/bundle/*.properties'],
+                dest: 'public/i18n/bundle'
+            }
         }
     });
 
@@ -184,6 +190,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-jasmine-node');
+    grunt.loadNpmTasks('grunt-properties-to-json');
     
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
@@ -223,5 +230,7 @@ module.exports = function(grunt) {
     
     // Run tests
     grunt.registerTask('test', ['jshint','concurrent:test']);
+    
+    grunt.registerTask('json', ['properties_to_json']);
 
 };
