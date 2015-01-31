@@ -54,6 +54,13 @@ module.exports = function(grunt) {
                 options: {
                     livereload: true
                 }
+            },
+            i18n: {
+                files: ['public/i18n/bundle/**properties'],
+                tasks: ['properties_to_json'],
+                options: {
+                    livereload: true
+                }
             }
         },
         jshint: {
@@ -226,11 +233,9 @@ module.exports = function(grunt) {
     grunt.registerTask('minijs', ['uglify']);
     
     // Minify tasks (generate min files)
-    grunt.registerTask('mini', ['minijs','less']);
+    grunt.registerTask('mini', ['minijs','less','properties_to_json']);
     
     // Run tests
     grunt.registerTask('test', ['jshint','concurrent:test']);
     
-    grunt.registerTask('json', ['properties_to_json']);
-
 };
